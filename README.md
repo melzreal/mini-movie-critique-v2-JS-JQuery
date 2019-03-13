@@ -1,24 +1,6 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Hay sunshine
+This may be no rotten tomatoes but tomatoes will be had 
+erm manufactured
+I mean its a little app for movie criticising and what not. Users will be able to create accounts and blabber on about how ghastly a given movie is. Or absolutely awesome a given movie is. etecetera.
