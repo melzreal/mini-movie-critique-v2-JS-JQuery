@@ -8,5 +8,5 @@
 
  Movie.create(title: "Black Panther", description: "Challa heir to Wakanda needs to kick some super butt", year: 2018)  
  Movie.create(title: "Isle of Dogs", description: "Cool boy goes on a quest for an even cooler dog", year: 2018)  
- User.create(username: "DeidreDaug", name: "Dina Dynamo", password: "password")  
+ User.create(username: "DeidreDaug", name: "Dina Dynamo", password: "dynamo")  
  User.create(username: "Bojack", name: "Bojack", password: "bojack")  

@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-gem 'bootstrap-sass', '3.4.1'
+gem 'bootstrap-sass', '~> 3.4.1'
 
 gem 'nokogiri', '~> 1.6', '>= 1.6.8'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -23,6 +23,8 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
+
+gem 'bcrypt'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
