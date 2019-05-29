@@ -1,0 +1,10 @@
+<%= form_for @movie do |f| %>
+<div><%= f.label :title %></div>
+<div><%= f.text_field :title %></div>
+<div><%= f.label :description %></div>
+<div><%= f.text_area :description, size: "40x12" %></div>
+<div><%= f.label :year %></div>
+<div><%= f.number_field :year %></div>
+
+<%= f.submit %>
+<% end %>
