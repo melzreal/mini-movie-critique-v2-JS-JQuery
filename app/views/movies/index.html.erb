@@ -1,5 +1,6 @@
 
   <% Movie.all.each do |u| %>
-  <div> <%= u.title %> </div> 
+  <div> <%= link_to u.title, movie_path(u.id) %> </div> 
+
   <% end %>
 
