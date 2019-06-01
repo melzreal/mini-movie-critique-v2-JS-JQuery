@@ -8,8 +8,10 @@ class CommentsController < ApplicationController
 
 
  def create
+
     @comment = Comment.create(comment_params)
-    redirect_to comment_path(@comment)
+     
+    redirect_to movie_path(@comment.movie_id)
   end
 
 

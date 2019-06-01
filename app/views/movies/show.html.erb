@@ -1,6 +1,32 @@
 
     <div>  <%= @movie.title %></div>
-
 	<div><%= @movie.description %></div>
 
-  
+<br>
+
+<div id="comments">
+ <p> Comments: </p>  
+    <% @movie.comments.each do |comment| %>     <br>
+  <div><%= comment.user.username %> says: 
+  <br><%= comment.text %> </div>     
+    <% end %>
+</div>
+
+
+
+
+<%= form_for @movie.comments.build do |f| %>
+<%= f.hidden_field :movie_id, value: @movie.id %>
+
+<%= f.label "Content" %> <br>
+<%= f.text_area :text %> <br>
+
+<%= f.label "Select User:" %>
+<%= f.collection_select :user_id, User.all, :id, :username %> <br>
+
+<%= f.submit %>
+<% end %>
+
+
+
+

@@ -1,6 +1,6 @@
 class Movie < ApplicationRecord
 	validates_uniqueness_of :title
-	has_many :users, through: :user_movies
+	belongs_to :user
 	has_many :comments
 	
 end
