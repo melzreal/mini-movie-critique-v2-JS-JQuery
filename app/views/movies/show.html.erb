@@ -1,6 +1,9 @@
 
     <div>  <%= @movie.title %></div>
 	<div><%= @movie.description %></div>
+	<% if @movie.movie_img.attached? %>
+		<image src="<%=url_for((@movie.movie_img))%>">
+	 <% end %>
 
 <br>
 

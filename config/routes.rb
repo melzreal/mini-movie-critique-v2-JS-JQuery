@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
-  resources :commented_movies
-  resources :user_movies
-  resources :user_commented_movies
-  resources :user_created_movies
+ 
   resources :comments
   resources :sessions
   resources :movies
