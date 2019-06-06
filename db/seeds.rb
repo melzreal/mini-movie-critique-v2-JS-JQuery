@@ -13,6 +13,8 @@ user3 = User.create(username: "Pops", name: "pops", password: "pops", admin: "tr
 movie1 = Movie.create(title: "Black Panther", description: "Challa heir to Wakanda needs to kick some super butt", year: 2018, user_id: user1.id )  
 movie2 = Movie.create(title: "Acquaman", description: "Acqua dude loses mom and tries to save the world from acquatic destruction", year: 2018, user_id: user2.id )    
 movie3 = Movie.create(title: "Isle of Dogs", description: "Boy goes on a quest to find his missing dog and oppose the establishment", year: 2018, user_id: user2.id )    
+movie4 = Movie.create(title: "John Wick 3: Parabellum", description: "Keanu Reaves kicks some assassin butt", year: 2019, user_id: user3.id )    
+
      
 movie1.movie_img.attach(io: File.open('app/assets/images/blackpanther.jpg'), filename: 'blackpanther.jpg', content_type: 'image/jpg')
 

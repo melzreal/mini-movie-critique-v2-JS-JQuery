@@ -1,7 +1,14 @@
 class MoviesController < ApplicationController
  
- def index
- end
+
+  def index
+    if session[:user_id]
+      @movies = User.find(session[:user_id]).movies
+      render template: 'users/user_movies' 
+    else
+      @movies = Movie.all
+    end
+  end
 	  
   def new
     @movie = Movie.new

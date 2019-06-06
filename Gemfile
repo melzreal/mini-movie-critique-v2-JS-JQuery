@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+gem 'pry'
 gem 'bootstrap-sass', '3.3.7'
 
 gem 'nokogiri', '~> 1.6', '>= 1.6.8'
