@@ -5,30 +5,26 @@
 		<image src="<%=url_for((@movie.movie_img))%>">
 	 <% end %>
 
-<br>
 
-<div id="comments">
+
+<div id="comments"> 
  <p> Comments: </p>  
     <% @movie.comments.each do |comment| %>     <br>
   <div><%= comment.user.username %> says: 
   <br><%= comment.text %> </div>     
     <% end %>
-</div>
-
+</div> <br> <br>
 
 
 
 <%= form_for @movie.comments.build do |f| %>
-<%= f.hidden_field :movie_id, value: @movie.id %>
-
-<%= f.label "Content" %> <br>
-<%= f.text_area :text %> <br>
-
-<%= f.label "Select User:" %>
-<%= f.collection_select :user_id, User.all, :id, :username %> <br>
-
-<%= f.submit %>
-<% end %>
+	<%= f.hidden_field :movie_id, value: @movie.id %>
+	<%= f.label "Add a comment:" %> 
+	<%= f.hidden_field :user_id, value: @commenter.id  %> <br>
+	<%= @commenter.username  %> <br>
+	<%= f.text_area :text %> <br>
+	<%= f.submit %>
+<%  end %>
 
 
 

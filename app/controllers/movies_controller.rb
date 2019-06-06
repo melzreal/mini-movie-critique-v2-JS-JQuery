@@ -24,7 +24,8 @@ class MoviesController < ApplicationController
   def show
 
     @movie = Movie.find(params[:id])
-    
+    @commenter = User.find(session[:user_id])
+
   end
 
   def edit
