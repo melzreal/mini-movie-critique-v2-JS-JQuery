@@ -2,14 +2,31 @@ class MoviesController < ApplicationController
  
 
   def index
-    if session[:user_id]
-      @movies = User.find(session[:user_id]).movies
-      render template: 'users/user_movies' 
+    if params[:user_id]
+       if !User.find_by_id params[:user_id]
+          flash[:alert] = "User not found."
+          redirect_to root_path
+        else
+
+          @movies = User.find(params[:user_id]).movies
+          render template: 'users/user_movies' 
+        end
     else
-      @movies = Movie.all
+       @movies = Movie.all
     end
+
   end
 	  
+    # def user_movies
+    #   if session[:user_id]
+    #   @movies = User.find(session[:user_id]).movies
+    #   render template: 'users/user_movies' 
+    # else
+    #   @movies = Movie.all
+    # end
+
+    # end 
+
   def new
     @movie = Movie.new
   end
@@ -29,10 +46,14 @@ class MoviesController < ApplicationController
 
 
   def show
-
-    @movie = Movie.find(params[:id])
-    @commenter = User.find(session[:user_id])
-
+    if !Movie.find_by_id params[:id]
+          flash[:alert] = "Movie not found."
+          redirect_to movies_url
+      else
+        @movie = Movie.find(params[:id])
+        @commenter = User.find(session[:user_id])
+      end
+   
   end
 
   def edit

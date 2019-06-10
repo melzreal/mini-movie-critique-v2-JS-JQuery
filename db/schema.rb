@@ -37,7 +37,6 @@ ActiveRecord::Schema.define(version: 2019_06_06_113148) do
     t.integer "user_id"
     t.integer "movie_id"
     t.string "text"
-    t.integer "rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "movie_rating"
@@ -63,6 +62,8 @@ ActiveRecord::Schema.define(version: 2019_06_06_113148) do
     t.string "name"
     t.string "password_digest"
     t.boolean "admin", default: false
+    t.string "google_token"
+    t.string "google_refresh_token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

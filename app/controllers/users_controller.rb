@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 
+    
 	def new
 	 @user = User.new
 	end
@@ -16,6 +17,14 @@ class UsersController < ApplicationController
 
 	end
 
+	def self.from_omniauth(auth)
+	    # Creates a new user only if it doesn't exist
+	    where(email: auth.info.email).first_or_initialize do |user|
+	      user.name = auth.info.name
+	      user.username = auth.info.email
+	    end
+	  end
+
 
 	def show
 	 if logged_in?
@@ -30,7 +39,7 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.require(:user).permit(:username, :name, :password)
+        params.permit(:username, :name, :password, :google_token, :google_refresh_token)
     end
 
 end
