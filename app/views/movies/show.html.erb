@@ -2,7 +2,7 @@
     <div>  <%= @movie.title %></div>
 	<div><%= @movie.description %></div>
 	<% if @movie.movie_img.attached? %>
-		<image src="<%=url_for((@movie.movie_img))%>">
+		<image style ="width: 600px" src="<%=url_for((@movie.movie_img))%>">
 	 <% end %>
 
 
@@ -29,3 +29,4 @@
 
 
 
+<%= link_to "Edit this movie", edit_movie_path(@movie.id) %>
