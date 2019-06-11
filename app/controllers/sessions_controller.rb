@@ -6,7 +6,6 @@ class SessionsController < ApplicationController
 
   def new
     @user = User.new
- 
   end
 
 
@@ -23,7 +22,8 @@ class SessionsController < ApplicationController
   end
 
   def create_facebook
-
+  
+  user = User.from_facebook
    @user = User.find_or_create_by(username: auth['info']['email']) do |u|
       u.name = auth['info']['name']
     end
@@ -44,7 +44,6 @@ class SessionsController < ApplicationController
     user.google_refresh_token = refresh_token if refresh_token.present?
 
     user.save
-    
     redirect_to root_path
 
   end 

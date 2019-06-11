@@ -16,16 +16,6 @@ class MoviesController < ApplicationController
     end
 
   end
-	  
-    # def user_movies
-    #   if session[:user_id]
-    #   @movies = User.find(session[:user_id]).movies
-    #   render template: 'users/user_movies' 
-    # else
-    #   @movies = Movie.all
-    # end
-
-    # end 
 
   def new
     @movie = Movie.new
@@ -33,6 +23,7 @@ class MoviesController < ApplicationController
 
 
  def create
+
     @movie = Movie.new(movie_params)
 
     if @movie.valid?

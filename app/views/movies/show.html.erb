@@ -12,21 +12,25 @@
     <% @movie.comments.each do |comment| %>     <br>
   <div><%= comment.user.username %> says: 
   <br><%= comment.text %> </div>     
+   <br> Rates this movie as a: <br>
+   <%= comment.rating %> </div>     
     <% end %>
-</div> <br> <br>
+</div> <br>
 
 
-
+<div>
 <%= form_for @movie.comments.build do |f| %>
 	<%= f.hidden_field :movie_id, value: @movie.id %>
 	<%= f.label "Add a comment:" %> 
 	<%= f.hidden_field :user_id, value: @commenter.id  %> <br>
 	<%= @commenter.username  %> <br>
 	<%= f.text_area :text %> <br>
+	<%= f.label "On 1-10, how would you rate this movie?" %> 
+	<%= f.number_field :rating, in: 1..10 %> <br>
 	<%= f.submit %>
 <%  end %>
 
-
+</div>
 
 
 <%= link_to "Edit this movie", edit_movie_path(@movie.id) %>
