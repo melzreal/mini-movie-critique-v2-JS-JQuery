@@ -12,8 +12,9 @@
     <% @movie.comments.each do |comment| %>     <br>
   <div><%= comment.user.username %> says: 
   <br><%= comment.text %> </div>     
-   <br> Rates this movie as a: <br>
-  
+ <%= comment.user.username %>  Rates this movie as a: 
+  <%= comment.movie.ratings.map{|m| m.rating if m.comment_id == comment.id}.compact.split("").join(", ") %> 
+</div>  <br>
     <% end %>
 </div> <br>
 
