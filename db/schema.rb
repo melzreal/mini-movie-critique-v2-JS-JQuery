@@ -39,7 +39,6 @@ ActiveRecord::Schema.define(version: 2019_06_12_104239) do
     t.string "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "rating"
   end
 
   create_table "genres", force: :cascade do |t|
@@ -67,6 +66,7 @@ ActiveRecord::Schema.define(version: 2019_06_12_104239) do
   create_table "ratings", force: :cascade do |t|
     t.integer "rating"
     t.integer "comment_id"
+    t.integer "movie_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
