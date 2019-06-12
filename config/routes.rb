@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
  
+  resources :movie_genres
+  resources :ratings
   resources :genres
   resources :comments
   resources :sessions

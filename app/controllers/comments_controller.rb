@@ -8,9 +8,9 @@ class CommentsController < ApplicationController
 
 
  def create
-
     @comment = Comment.create(comment_params)
-     
+    #@rating = Rating.new(params[:comment][:rating])
+
     redirect_to movie_path(@comment.movie_id)
   end
 
@@ -22,7 +22,7 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:user_id, :movie_id, :text, :rating)
+    params.require(:comment).permit(:user_id, :movie_id, :text)
   end
 
 end
