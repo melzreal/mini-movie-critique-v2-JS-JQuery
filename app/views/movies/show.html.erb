@@ -5,6 +5,14 @@
 
     <div>  <%= @movie.title %></div>
 	<div><%= @movie.description %></div>
+	<div>
+		<p> Genres: </p> 
+		<% @movie.genres.each do |m|  %>
+			<%= m.name %> <br>
+		  <% end %>
+			
+		</div>
+	
 	<% if @movie.movie_img.attached? %>
 		<image style ="width: 600px" src="<%=url_for((@movie.movie_img))%>">
 	 <% end %>
