@@ -1,4 +1,6 @@
 class Movie < ApplicationRecord
+
+
 	validates_uniqueness_of :title
 	belongs_to :user
 	
