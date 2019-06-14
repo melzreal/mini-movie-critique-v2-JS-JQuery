@@ -23,6 +23,7 @@ class MoviesController < ApplicationController
 
 
  def create
+  binding.pry
 
     @movie = Movie.new(movie_params)
 
@@ -72,7 +73,7 @@ class MoviesController < ApplicationController
 
   def movie_params
 
-    params.require(:movie).permit(:title, :description, :year, :user_id, :movie_img, :rating, :genres => [])
+    params.require(:movie).permit(:title, :description, :year, :user_id, :movie_img, :rating, genre_ids:[], :genres => [])
 
 
   end

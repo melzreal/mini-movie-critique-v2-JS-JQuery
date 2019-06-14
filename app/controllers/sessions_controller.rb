@@ -23,14 +23,19 @@ class SessionsController < ApplicationController
 
   def create_facebook
   
-  user = User.from_facebook
-   @user = User.find_or_create_by(username: auth['info']['email']) do |u|
+     @user = User.find_or_create_by(uid: auth['uid']) do |u|
       u.name = auth['info']['name']
+      u.email = auth['info']['email']
+      u.image = auth['info']['image']
     end
-
+ 
     session[:user_id] = @user.id
  
-    render 'users/index'
+    render 'welcome/home'
+  end 
+
+  def create_git
+    
   end 
 
 

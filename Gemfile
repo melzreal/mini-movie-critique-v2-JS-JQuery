@@ -7,6 +7,7 @@ gem 'omniauth-google-oauth2'
 gem 'dotenv-rails'
 gem 'pry'
 gem 'bootstrap-sass', '3.3.7'
+gem 'passenger'
 
 gem 'nokogiri', '~> 1.6', '>= 1.6.8'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

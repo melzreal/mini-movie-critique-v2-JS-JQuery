@@ -1,17 +1,32 @@
 Rails.application.routes.draw do
  
-  resources :movie_genres
+ 
   resources :ratings
-  resources :genres
   resources :comments
   resources :sessions
-  resources :movies
+  
+  resources :movies do
+    # nested resource for movies
+    resources :movies, only: [:show, :index]
+
+  end
+
   
   resources :users do
     # nested resource for movies
     resources :movies, only: [:show, :index]
 
   end
+
+  resources :genres do
+    # nested resource for movies
+    resources :movies, only: [:new]
+
+  end
+
+
+
+
 
    get '/signin' => 'sessions#new'
    post '/signin' => 'sessions#create'
@@ -24,9 +39,9 @@ Rails.application.routes.draw do
 
   get '/auth/facebook/callback' => 'sessions#create_facebook'
   get '/auth/google_oauth2/callback' => 'sessions#create_google'
+  get '/auth/github' => 'sessions#create_git'
 
-  get 'auth/failure', to: redirect('/')
-
+ 
 
   root 'users#index'
 end

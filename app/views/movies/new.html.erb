@@ -6,9 +6,19 @@
 <div><%= f.text_area :description, size: "40x12" %></div>
 <div><%= f.label :year %></div>
 <div><%= f.number_field :year %></div>
-<%= f.hidden_field :user_id, :value => session[:user_id] %>
 <div><%= f.label "Movie Image" %></div>
 <div><%= f.file_field :movie_img %></div>
+
+<div><%= f.label "Optional: Movie Genre" %></div>
+
+<%= f.collection_check_boxes :genre_ids, Genre.all, :id, :name %><br>
+  <%= f.fields_for :genres, @movie.genres.build do |g| %><br>
+  <%= f.label "New Genre" %>
+    <%= g.text_field :name %>
+  <% end %>
+
+
+<%= f.hidden_field :user_id, :value => session[:user_id] %>
 
 <%= f.submit %>
 
