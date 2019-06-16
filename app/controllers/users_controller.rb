@@ -39,7 +39,7 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.permit(:username, :name, :password, :google_token, :google_refresh_token)
+        params.permit(:username, :name, :password, :google_token, :google_refresh_token, :email, :image, :uid)
     end
 
 end
