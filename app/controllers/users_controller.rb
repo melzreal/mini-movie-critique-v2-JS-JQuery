@@ -6,13 +6,12 @@ class UsersController < ApplicationController
 	end
 
 	def create
-		binding.pry
 
 	 @user = User.create(user_params)
 
 		if @user
 		  session[:user_id] = @user.id
-		  redirect_to user_path(@user)
+		  redirect_to user_path(@user.id)
 		else
 		  redirect_to new_user_path
 		end
@@ -41,7 +40,7 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.permit(:username, :name, :password, :google_token, :google_refresh_token, :email, :image, :uid)
+        params.require(:user).permit(:name, :username, :password, :email, :image, :uid)
     end
 
 end

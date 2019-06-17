@@ -13,10 +13,9 @@ class SessionsController < ApplicationController
 
     @user = User.find_by(name: params[:user][:name])
 
-    # if @user && @user.authenticate(params[:password])
-    if @user
+   if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      redirect_to user_path(@user)
+      redirect_to user_path(current_user)
     else
       redirect_to new_user_path
     end
@@ -28,6 +27,7 @@ class SessionsController < ApplicationController
       u.name = auth['info']['name']
       u.email = auth['info']['email']
       u.image = auth['info']['image']
+      u.password = SecureRandom.hex(9)
     end
 
     session[:user_id] = @user.id
