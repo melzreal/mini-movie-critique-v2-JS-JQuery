@@ -11,16 +11,16 @@ class CommentsController < ApplicationController
 
     @comment = Comment.new(comment_params)
     @rating = Rating.new(comment_id: @comment.id, movie_id: params[:comment][:movie_id], rating: params[:comment][:ratings])
-    if @rating.valid?
-      @rating.save
-    else
-     flash[:alert] = "Rating must be between 1 and 10."
+  
+    if !@rating.save
+      flash[:alert] = "Rating must be between 1 and 10."
+    else 
+      @comment.ratings << @rating
+      @comment.save    
     end
-
-    @comment.ratings << @rating
-    @comment.save
     
     redirect_to movie_path(@comment.movie_id)
+
   end
 
 
