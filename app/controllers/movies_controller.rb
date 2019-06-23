@@ -63,7 +63,7 @@ class MoviesController < ApplicationController
   end 
 
   def destroy
-    movie.find(params[:id]).destroy
+    Movie.find(params[:id]).destroy
     redirect_to movies_url
   end
 

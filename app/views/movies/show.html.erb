@@ -19,6 +19,7 @@
 
 
 
+
 <div id="comments"> 
  <p> Comments: </p>  
     <% @movie.comments.each do |comment| %>     <br>
@@ -49,4 +50,8 @@
 </div>
 
 
-<%= link_to "Edit this movie", edit_movie_path(@movie.id) %>
+<%= link_to "Edit this movie", edit_movie_path(@movie.id) %> <br>
+
+<% if current_user.admin? %>
+<%= link_to "Delete this movie", "/destroy/#{@movie.id}" %>
+<% end %>

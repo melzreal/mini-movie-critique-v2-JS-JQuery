@@ -28,6 +28,8 @@ Rails.application.routes.draw do
    post '/login' => 'sessions#create'
    get '/logout' => 'sessions#destroy'
 
+   get '/destroy/:id'=> 'movies#destroy'
+
 
   # Routes for Facebook and Google authentication
   get '/auth/google_oauth2/callback' => 'sessions#create_google'
