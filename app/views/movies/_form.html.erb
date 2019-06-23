@@ -1,4 +1,5 @@
 <%= form_for @movie do |f| %>
+<%= f.hidden_field :user_id, :value => session[:user_id] %>
 
 <div><%= f.label :title %></div>
 <div><%= f.text_field :title %></div>
@@ -8,18 +9,17 @@
 <div><%= f.number_field :year %></div>
 <div><%= f.label "Movie Image" %></div>
 <div><%= f.file_field :movie_img %></div>
-<div><%= f.label "Optional: Movie Genre" %></div>
+<div><%= f.label "Select a Movie Genre" %></div>
+<div><%= f.collection_check_boxes :genre_ids, Genre.all, :id, :name %><br>
+  <%= f.fields_for :genres, @movie.genres.build do |genres_attributes| %><br> </div>
 
-<%= f.collection_check_boxes :genre_ids, Genre.all, :id, :name %><br>
-  <%= f.fields_for :genres, @movie.genres.build do |g| %><br>
-  <%= f.label "New Genre" %>
-    <%= g.text_field :name %>
+<div><%= f.label "Or create a new Movie Genre" %></div>
+      <%= genres_attributes.text_field :name %><br>
   <% end %>
 
-
-<%= f.hidden_field :user_id, :value => session[:user_id] %>
-
 <%= f.submit %>
+
+
 
 <% if @movie.errors.any? %>
   <div id="error_explanation">

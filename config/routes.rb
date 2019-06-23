@@ -9,16 +9,17 @@ Rails.application.routes.draw do
 
   
   resources :users do
-    # nested resource for movies
     resources :movies, only: [:show, :index]
-
   end
 
   resources :genres do
-    # nested resource for movies
     resources :movies, only: [:new]
-
   end
+
+  scope '/admin', module: 'admin' do
+    resources :manage, only: [:index, :show, :edit, :destroy]
+  end
+
 
    get '/signin' => 'sessions#new'
    post '/signin' => 'sessions#create'   
@@ -27,8 +28,8 @@ Rails.application.routes.draw do
    post '/login' => 'sessions#create'
    get '/logout' => 'sessions#destroy'
 
-  # Routes for Facebook and Google authentication
 
+  # Routes for Facebook and Google authentication
   get '/auth/google_oauth2/callback' => 'sessions#create_google'
   get '/auth/github' => 'sessions#create_git'
 

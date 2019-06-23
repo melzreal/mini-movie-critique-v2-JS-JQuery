@@ -10,7 +10,7 @@ class GenresController < ApplicationController
 
 
   def create
-    @genre = Genre.new(genre_params)
+    @genre = Genre.create(genre_params)
   end 
 
    def show

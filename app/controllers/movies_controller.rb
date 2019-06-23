@@ -51,6 +51,7 @@ class MoviesController < ApplicationController
   end
 
   def update
+   
     @movie = Movie.find(params[:id])
 
     if @movie.update(movie_params)
@@ -71,7 +72,7 @@ class MoviesController < ApplicationController
 
   def movie_params
 
-    params.require(:movie).permit(:title, :description, :year, :user_id, :movie_img, :rating, genre_ids:[], :genres => [])
+    params.require(:movie).permit(:title, :description, :year, :user_id, :movie_img, :rating, genre_ids:[], genres_attributes: [:name])
 
 
   end
