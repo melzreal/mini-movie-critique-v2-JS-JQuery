@@ -22,11 +22,15 @@ class Movie < ApplicationRecord
     end
 
 
-	# scope method. Method limited to this class.
+	#  Method limited to this class.
     
-    def violent
-    	self.genres.collect{ |m| m.name.include?("PG13")}.include?(true) 
+    def self.violent
+    	Movie.all.genres.collect{ |m| m.name.include?("PG13")}.include?(true) 
     end 
+
+    def self.high_rating
+        Movie.all.collect{ |r| r.ratings.collect { |m| r if m.rating == 10}}.flatten.compact
+    end
 
 
 	

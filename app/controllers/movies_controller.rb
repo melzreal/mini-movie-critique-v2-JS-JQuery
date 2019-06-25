@@ -68,6 +68,10 @@ class MoviesController < ApplicationController
   end
 
 
+   def high_ratings
+    @high_ratings = Movie.high_rating
+   end 
+
   private
 
   def movie_params

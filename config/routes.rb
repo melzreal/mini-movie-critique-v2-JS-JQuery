@@ -2,12 +2,14 @@ Rails.application.routes.draw do
  
    get '/auth/facebook/callback' => 'sessions#create_facebook'
 
-  resources :ratings
+
   resources :comments
   resources :sessions
   resources :movies 
 
-  
+  get '/ratings'  => 'movies#high_ratings'
+
+
   resources :users do
     resources :movies, only: [:show, :index]
   end
