@@ -1,6 +1,6 @@
 # README
 
-Hay sunshine
-This may be no rotten tomatoes but tomatoes will be had 
-erm manufactured
-I mean its a little app for movie criticising and what not. Users will be able to create accounts and blabber on about how ghastly a given movie is. Or absolutely awesome a given movie is. etecetera.
+Building up on my mini movie critique rails project, its time to add some JQuery fun interactivity between movies, loading some functions without refreshing the page and using serializers to render content.
+
+Time to combine Rails with some JS rendering of JSON responses.
+
