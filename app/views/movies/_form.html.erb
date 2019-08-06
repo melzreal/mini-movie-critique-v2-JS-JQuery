@@ -1,0 +1,39 @@
+<%= form_for @movie do |f| %>
+<%= f.hidden_field :user_id, :value => session[:user_id] %>
+
+<div><%= f.label :title %></div>
+<div><%= f.text_field :title %></div>
+<div><%= f.label :description %></div>
+<div><%= f.text_area :description, size: "40x12" %></div>
+<div><%= f.label :year %></div>
+<div><%= f.number_field :year %></div>
+<div><%= f.label "Movie Image" %></div>
+<div><%= f.file_field :movie_img %></div>
+<div><%= f.label "Select a Movie Genre" %></div>
+<div><%= f.collection_check_boxes :genre_ids, Genre.all, :id, :name %><br>
+  <%= f.fields_for :genres, @movie.genres.build do |genres_attributes| %><br> </div>
+
+<div><%= f.label "Or create a new Movie Genre" %></div>
+      <%= genres_attributes.text_field :name %><br>
+  <% end %>
+
+<%= f.submit %>
+
+
+
+<% if @movie.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@movie.errors.count, "error") %>
+      prohibited this movie from being saved:
+    </h2>
+ 
+    <ul>
+    <% @movie.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<% end %>

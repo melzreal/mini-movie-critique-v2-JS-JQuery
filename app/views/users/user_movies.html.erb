@@ -1,0 +1,7 @@
+ <% @movies.each do |m| %>
+ 	<div>  <%= m.title %></div>
+	<div><%= m.description %></div>
+	<% if m.movie_img.attached? %>
+		<image src="<%=url_for((m.movie_img))%>">
+	 <% end %>
+<% end %>

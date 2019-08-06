@@ -1,0 +1,42 @@
+ <% if flash[:alert] %>
+    <div class="alert"><%= flash.now[:alert] %></div>
+  <% end %>
+  
+<h1>Sign Up</h1>
+<%= form_for @user, controller: 'users', action: 'create' do |f| %>
+	<%= f.label :name %><br>
+	<%= f.text_field :name %><br>
+
+	<%= f.label :username, 'Choose a username' %><br>
+	<%= f.text_field :username %><br><br>
+
+   <%= f.label :password, 'Choose a password:' %> <br>
+	<%= f.password_field :password %> <br>
+
+	<%= f.submit 'Create User'%>
+
+	<% end %> <br>
+
+<h3><p> Alternatively you can also: </p></h3>
+
+<h3> <%= link_to('Sign up with Facebook', '/auth/facebook') %> <br></h3>
+
+
+<h3><%= link_to('Sign up with Google', '/auth/google_oauth2') %></h3>
+
+
+
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@user.errors.count, "error") %>
+      prohibited this user from being saved:
+    </h2>
+ 
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
