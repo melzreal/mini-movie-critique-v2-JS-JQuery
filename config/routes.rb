@@ -33,11 +33,5 @@ Rails.application.routes.draw do
    get '/destroy/:id'=> 'movies#destroy'
 
 
-  # Routes for Facebook and Google authentication
-  get '/auth/google_oauth2/callback' => 'sessions#create_google'
-  get '/auth/github' => 'sessions#create_git'
-
- 
-
   root 'users#index'
 end

@@ -24,10 +24,8 @@ class MoviesController < ApplicationController
 
  def create
 
-
     @movie = Movie.new(movie_params)
   
-    
     if @movie.valid?
       @movie.save
       render json: @movie, status: 201
