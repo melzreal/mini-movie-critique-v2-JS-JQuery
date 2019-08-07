@@ -28,7 +28,7 @@ class MoviesController < ApplicationController
   
     if @movie.valid?
       @movie.save
-      render json: @movie, status: 201
+      render json: @movie
      
     else
       render :new

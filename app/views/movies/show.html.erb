@@ -1,79 +1,67 @@
-<% if flash[:alert] %>
-    <div class="alert"><%= flash.now[:alert] %></div>
-<% end %>
-    
-<button>
-	<a href="#" class="js-next" data-id="<%=@movie.id%>">Next Movie</a>
-</button> 
-<br>
-<br>
+	<% if flash[:alert] %>
+	    <div class="alert"><%= flash.now[:alert] %></div>
+	<% end %>
+	    
+	<button>
+		<a href="#" class="next-movie" data-id="<%=@movie.id%>">Next Movie</a>
+	</button> 
+	<br>
+	<br>
    <h1 class="movieTitle">        <%= @movie.title %></h1>
    <h2 class="movieDescription">   <%= @movie.description %></h2>
-
-<br>
+	<br>
 	<div class="movieGenres">
 		<p> Genres: </p> 
 		<% @movie.genres.each do |m|  %>
 			<%= m.name %> <br>
 		  <% end %>
 	</div>
+
 	<div class="movieImage">
 	<% if @movie.movie_img.attached? %>
 		<image style ="width: 600px" src="<%=url_for((@movie.movie_img))%>">
 	 <% end %>
 	 <div>
 
+	<div id="comments"> 
+	 <p> Comments: </p>  
+	    <% @movie.comments.each do |comment| %>     
+	<br>
+	<div><%= comment.user.username %> says: 
+	<br>
+		  <%= comment.text %> 
+	</div>     
+	 <%= comment.user.username %>  Rates this movie as a: 
+	 <%= comment.movie.ratings.map{|m| m.rating if m.comment_id == comment.id}.compact.split("").join(", ") %> 
+	</div>  
+	<br>
+	    <% end %>
+	</div> 
+	<br>
 
+	<div>
+	<%= form_for @movie.comments.build do |f| %>
+		<%= f.hidden_field :movie_id, value: @movie.id %>
+		<%= f.label "Add a comment:" %> 
+		<%= f.hidden_field :user_id, value: @commenter.id  %> <br>
+		<%= @commenter.username  %> <br>
+		<%= f.text_area :text %> <br>
+		<%= f.label "On 1-10, how would you rate this movie?" %> 
+		
+		 <%= f.number_field :ratings %>
 
-
-<div id="comments"> 
- <p> Comments: </p>  
-    <% @movie.comments.each do |comment| %>     <br>
-  <div><%= comment.user.username %> says: 
-  <br><%= comment.text %> </div>     
- <%= comment.user.username %>  Rates this movie as a: 
-  <%= comment.movie.ratings.map{|m| m.rating if m.comment_id == comment.id}.compact.split("").join(", ") %> 
-</div>  <br>
-    <% end %>
-</div> <br>
-<div>
-
-<%= form_for @movie.comments.build do |f| %>
-	<%= f.hidden_field :movie_id, value: @movie.id %>
-	<%= f.label "Add a comment:" %> 
-	<%= f.hidden_field :user_id, value: @commenter.id  %> <br>
-	<%= @commenter.username  %> <br>
-	<%= f.text_area :text %> <br>
-	<%= f.label "On 1-10, how would you rate this movie?" %> 
-	
-	 <%= f.number_field :ratings %>
-
-	<%= f.submit %>
-<%  end %>
-
-</div>
+		<%= f.submit %>
+	<%  end %>
+	</div>
 
 
 <%= link_to "Edit this movie", edit_movie_path(@movie.id) %> 
-<br>
-<br>
-<br>
+	<br>
+	<br>
+	<br>
 
 <% if current_user.admin? %>
 <%= link_to "Delete this movie", "/destroy/#{@movie.id}" %>
 <% end %>
 
 
-<script type="text/javascript" charset="utf-8">
-$(function () {
-  event.preventDefault()
-  $(".js-next").on("click", function() {
-    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
-    $.get("/movies/" + nextId + ".json", function(data) {
-      $(".movieTitle").text(data["title"]);
-      $(".movieDescription").text(data["description"]);
-      $(".js-next").attr("data-id", data["id"]);
-    });
-  });
-});
-</script>
