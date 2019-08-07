@@ -19,7 +19,11 @@
 
 <%= f.submit %>
 
-
+<div id="movieResult">
+  <h2 id="movieTitle"></h2>
+   <p id="movieDescription"></p>
+   <p id="movieYear"></p>
+</div>
 
 <% if @movie.errors.any? %>
   <div id="error_explanation">
@@ -35,5 +39,26 @@
     </ul>
   </div>
 <% end %>
-
 <% end %>
+
+
+
+
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    $('form').submit(function(event) {
+      event.preventDefault();
+
+      var values = $(this).serialize(); 
+      var posting = $.post('/movies', values);
+ 
+      posting.done(function(data) {
+        var movie = data;
+        $("#movieTitle").text(movie["title"]);
+        $("#movieDescription").text(movie["description"]);
+        $("#movieYear").text(movie["year"]);
+      });
+    
+    });
+  });
+</script>

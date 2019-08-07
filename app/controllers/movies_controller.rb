@@ -23,11 +23,15 @@ class MoviesController < ApplicationController
 
 
  def create
-    @movie = Movie.new(movie_params)
 
+
+    @movie = Movie.new(movie_params)
+  
+    
     if @movie.valid?
       @movie.save
-      redirect_to movie_path(@movie)
+      render json: @movie, status: 201
+     
     else
       render :new
     end
