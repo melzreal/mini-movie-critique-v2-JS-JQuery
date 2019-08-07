@@ -38,14 +38,14 @@ class MoviesController < ApplicationController
 
 
   def show
-    if !Movie.find_by_id params[:id]
-          flash[:alert] = "Movie not found."
-          redirect_to movies_url
-      else
-        @movie = Movie.find(params[:id])
-        @commenter = User.find(session[:user_id])
-      end
-   
+     @movie = Movie.find(params[:id])
+     @commenter = User.find(session[:user_id])
+
+         respond_to do |format|
+            format.html { render :show }
+            format.json { render json: @movie }
+          end       
+  
   end
 
   def edit

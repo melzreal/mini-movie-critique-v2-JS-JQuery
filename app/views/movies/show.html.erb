@@ -1,25 +1,27 @@
-
-
-
-
- <% if flash[:alert] %>
+<% if flash[:alert] %>
     <div class="alert"><%= flash.now[:alert] %></div>
-  <% end %>
+<% end %>
     
+<button>
+	<a href="#" class="js-next" data-id="<%=@movie.id%>">Next Movie</a>
+</button> 
+<br>
+<br>
+   <h1 class="movieTitle">        <%= @movie.title %></h1>
+   <h2 class="movieDescription">   <%= @movie.description %></h2>
 
-    <div>  <%= @movie.title %></div>
-	<div><%= @movie.description %></div>
-	<div>
+<br>
+	<div class="movieGenres">
 		<p> Genres: </p> 
 		<% @movie.genres.each do |m|  %>
 			<%= m.name %> <br>
 		  <% end %>
-			
-		</div>
-	
+	</div>
+	<div class="movieImage">
 	<% if @movie.movie_img.attached? %>
 		<image style ="width: 600px" src="<%=url_for((@movie.movie_img))%>">
 	 <% end %>
+	 <div>
 
 
 
@@ -34,9 +36,8 @@
 </div>  <br>
     <% end %>
 </div> <br>
-
-
 <div>
+
 <%= form_for @movie.comments.build do |f| %>
 	<%= f.hidden_field :movie_id, value: @movie.id %>
 	<%= f.label "Add a comment:" %> 
@@ -46,7 +47,6 @@
 	<%= f.label "On 1-10, how would you rate this movie?" %> 
 	
 	 <%= f.number_field :ratings %>
- 
 
 	<%= f.submit %>
 <%  end %>
@@ -62,3 +62,18 @@
 <% if current_user.admin? %>
 <%= link_to "Delete this movie", "/destroy/#{@movie.id}" %>
 <% end %>
+
+
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  event.preventDefault()
+  $(".js-next").on("click", function() {
+    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+    $.get("/movies/" + nextId + ".json", function(data) {
+      $(".movieTitle").text(data["title"]);
+      $(".movieDescription").text(data["description"]);
+      $(".js-next").attr("data-id", data["id"]);
+    });
+  });
+});
+</script>

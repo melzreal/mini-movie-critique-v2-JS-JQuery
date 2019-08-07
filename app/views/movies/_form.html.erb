@@ -41,24 +41,3 @@
 <% end %>
 <% end %>
 
-
-
-
-<script type="text/javascript" charset="utf-8">
-  $(function () {
-    $('form').submit(function(event) {
-      event.preventDefault();
-
-      var values = $(this).serialize(); 
-      var posting = $.post('/movies', values);
- 
-      posting.done(function(data) {
-        var movie = data;
-        $("#movieTitle").text(movie["title"]);
-        $("#movieDescription").text(movie["description"]);
-        $("#movieYear").text(movie["year"]);
-      });
-    
-    });
-  });
-</script>
