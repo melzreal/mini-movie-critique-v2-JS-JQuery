@@ -26,14 +26,15 @@ $(document).ready(function() {
  $(function () {
   event.preventDefault()
   $(".next-movie").on("click", function() {
-    var nextId = parseInt($(".next-movie").attr("data-id")) + 1;
-    $.get("/movies/" + nextId + ".json", function(data) {
+    var nextID = parseInt($(".next-movie").attr("data-id")) + 1;
+    $.get("/movies/" + nextID + ".json", function(data) {
       $(".movieTitle").text(data["title"]);
       $(".movieDescription").text(data["description"]);
       $(".next-movie").attr("data-id", data["id"]);
     });
   });
 });
+
 
   function Movie(movie){
   	this.title = movie.title 
@@ -48,7 +49,6 @@ $(document).ready(function() {
   	<h1>${this.title}</h1>
   	<h2>${this.description}</h2>
   	<h2>${this.year}</h2>
-  	<button class="next-movie"> Next Movie </button> 
   	`
   	return movieHTML 
   }
