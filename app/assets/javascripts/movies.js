@@ -30,6 +30,7 @@ $(document).ready(function() {
     $.get("/movies/" + nextID + ".json", function(data) {
       $(".movieTitle").text(data["title"]);
       $(".movieDescription").text(data["description"]);
+      //$(".movieGenres").text(data["movie"]["genres"]);
       $(".next-movie").attr("data-id", data["id"]);
     });
   });
@@ -40,6 +41,7 @@ $(document).ready(function() {
   	this.title = movie.title 
   	this.description = movie.description
   	this.year = movie.year 
+  	this.genres = movie.genres
   	this.user_id = movie.user_id 
   
   }
@@ -49,6 +51,7 @@ $(document).ready(function() {
   	<h1>${this.title}</h1>
   	<h2>${this.description}</h2>
   	<h2>${this.year}</h2>
+  	<h2>${this.genres}</h2>
   	`
   	return movieHTML 
   }
