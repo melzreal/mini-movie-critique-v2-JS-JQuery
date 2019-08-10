@@ -13,6 +13,11 @@ class MoviesController < ApplicationController
         end
     else
        @movies = Movie.all
+        respond_to do |format|
+            format.html 
+            format.json { render json: @movies }
+          end 
+
     end
 
   end
