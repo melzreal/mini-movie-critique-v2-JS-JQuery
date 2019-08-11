@@ -12,7 +12,8 @@ $(document).ready(function() {
       posting.done(function(data) {
         var movie = new Movie(data);
         var htmlOfMovie =  movie.showMovie();
-       	$("#movieTitle").html(htmlOfMovie);
+        $('body > div.container').html('');
+        $('body > div.container').append(htmlOfMovie); 
         // $("#movieTitle").text(movie["title"]);
         // $("#movieDescription").text(movie["description"]);
         // $("#movieYear").text(movie["year"]);
@@ -26,10 +27,18 @@ $(document).ready(function() {
  $(function () {
   event.preventDefault()
   $(".next-movie").on("click", function() {
+  	
     var nextID = parseInt($(".next-movie").attr("data-id")) + 1;
+  
     $.get("/movies/" + nextID + ".json", function(data) {
-      $(".movieTitle").text(data["title"]);
-      $(".movieDescription").text(data["description"]);
+      $('body > div.container').html('');
+
+      $('body > div.container').append(`
+      ${data.title} <br>
+      ${data.description}  <br>
+      ${data.year} <br>
+      `);
+      // $(".movieDescription").text(data["description"]);
       //$(".movieGenres").text(data["movie"]["genres"]);
       $(".next-movie").attr("data-id", data["id"]);
     });
