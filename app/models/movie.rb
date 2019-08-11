@@ -6,7 +6,6 @@ class Movie < ApplicationRecord
 	
 	has_many :comments
 
-
 	has_many :movie_genres
 	has_many :genres, through: :movie_genres
 	accepts_nested_attributes_for :genres
@@ -33,7 +32,9 @@ class Movie < ApplicationRecord
     # end
 
     def next 
-    	Movie.where("id > ?", id).first
+        mooouvie = Movie.where("id > ?", id).first
+
+        mooouvie ? mooouvie : Movie.first
  	end 
 
 	

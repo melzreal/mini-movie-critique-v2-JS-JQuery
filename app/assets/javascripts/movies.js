@@ -31,9 +31,8 @@ $(document).ready(function() {
     var nextID = parseInt($(".next-movie").attr("data-id")) + 1;
   
     $.get("/movies/" + nextID + ".json", function(data) {
-      $('body > div.container').html('');
-
-      $('body > div.container').append(`
+      $('.display').html('');
+      $('.display').append(`
       ${data.title} <br>
       ${data.description}  <br>
       ${data.year} <br>

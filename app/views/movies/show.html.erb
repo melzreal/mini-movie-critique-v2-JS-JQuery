@@ -7,6 +7,8 @@
 	</button> 
 	<br>
 	<br>
+
+<div class="display">	
    <h1 class="movieTitle">        <%= @movie.title %></h1>
    <h2 class="movieDescription">   <%= @movie.description %></h2>
 	<br>
@@ -22,6 +24,9 @@
 		<image style ="width: 600px" src="<%=url_for((@movie.movie_img))%>">
 	 <% end %>
 	 <div>
+
+</div> <!-- end display div -->
+
 	<div id="comments"> 
 	<% if @movie.comments.exists? %>
 	 <p> Comments: </p>  

@@ -26,17 +26,21 @@ const bindClickHandlers = () => {
   })
 
 
-$(document).on('click','next', function(){
+$(document).on('click','.next', function(){
  
   let nextMovieID = parseInt($(".next").attr("data-id")) + 1;
      
     fetch(`/movies/${nextMovieID}/next`)
-      $("body > div.container > h1").text(data["title"]);
-      $("body > div.container > h3").text(data["description"]);
-      //$(".movieGenres").text(data["movie"]["genres"]);
-      $(".next").attr("data-id", data["id"]);
+      .then(response => response.json())
+      .then(data => {
+          $('.replaceNext').html('');
+          let singleMovie = new Movie(data);
+          let movHTML = singleMovie.showMovie();
+          $('.replaceNext').append(movHTML);
+      $('.next').attr("data-id", data["id"]);
     });
- 
+    
+    })
 
 }
 
@@ -81,8 +85,10 @@ const getMovies = () => {
 
     Movie.prototype.showIndividualMovie = function(){
     let movieHTML = `
+     <div class="replaceNext">
      <h1>${this.title} </a></h1> 
      <h3>${this.description}</h2> 
+     </div>
      <button class="next" data-id="${this.id}"> Next Movie </button> 
     `
     return movieHTML 
