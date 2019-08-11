@@ -7,17 +7,8 @@ const bindClickHandlers = () => {
 	$('#all_movies').on('click', (e) => {
 		e.preventDefault();
 		history.pushState(null, null, "movies");
+    getMovies();
 
-		fetch('/movies.json')
-			.then(res => res.json())
-			.then(movies => {
-					$('body > div.container').html('')
-					movies.forEach(movie => {
-						let newMovie = new Movie(movie);
-						let movHTML = newMovie.showMovie();
-						$('body > div.container').append(movHTML);
-					})
-				})
 	});
 
   $(document).on('click','a.show_movie', function(e){
@@ -33,8 +24,36 @@ const bindClickHandlers = () => {
 
     })
   })
+
+
+$(document).on('click','next', function(){
+ 
+  let nextMovieID = parseInt($(".next").attr("data-id")) + 1;
+     
+    fetch(`/movies/${nextMovieID}/next`)
+      $("body > div.container > h1").text(data["title"]);
+      $("body > div.container > h3").text(data["description"]);
+      //$(".movieGenres").text(data["movie"]["genres"]);
+      $(".next").attr("data-id", data["id"]);
+    });
+ 
+
 }
 
+const getMovies = () => {
+
+    fetch('/movies.json')
+      .then(res => res.json())
+      .then(movies => {
+          $('body > div.container').html('')
+          movies.forEach(movie => {
+            let newMovie = new Movie(movie);
+            let movHTML = newMovie.showMovie();
+            $('body > div.container').append(movHTML);
+          })
+        })
+
+}
 
 
   function Movie(movie){
@@ -64,6 +83,7 @@ const bindClickHandlers = () => {
     let movieHTML = `
      <h1>${this.title} </a></h1> 
      <h3>${this.description}</h2> 
+     <button class="next" data-id="${this.id}"> Next Movie </button> 
     `
     return movieHTML 
   }

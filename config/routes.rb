@@ -2,16 +2,12 @@ Rails.application.routes.draw do
  
    get '/auth/facebook/callback' => 'sessions#create_facebook'
 
-
   resources :comments
   resources :sessions
   resources :movies 
-
-
   resources :users do
     resources :movies, only: [:show, :index]
   end
-
   resources :genres do
     resources :movies, only: [:new]
   end
@@ -20,6 +16,7 @@ Rails.application.routes.draw do
     resources :manage, only: [:index, :show, :edit, :destroy]
   end
 
+   get '/movies/:id/next/', to: 'movies#next'
 
    get '/signin' => 'sessions#new'
    post '/signin' => 'sessions#create'   

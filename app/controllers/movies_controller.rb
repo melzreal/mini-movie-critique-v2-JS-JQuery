@@ -1,5 +1,7 @@
 class MoviesController < ApplicationController
- 
+
+  before_action :set_movie, only:[:show, :edit, :update, :destroy, :next]
+
 
   def index
     if params[:user_id]
@@ -7,7 +9,6 @@ class MoviesController < ApplicationController
           flash[:alert] = "User not found."
           redirect_to root_path
         else
-
           @movies = User.find(params[:user_id]).movies
           render template: 'users/user_movies' 
         end
@@ -17,10 +18,9 @@ class MoviesController < ApplicationController
             format.html 
             format.json { render json: @movies }
           end 
-
     end
-
   end
+
 
   def new
     @movie = Movie.new
@@ -45,7 +45,7 @@ class MoviesController < ApplicationController
   def show
      @movie = Movie.find(params[:id])
      @commenter = User.find(session[:user_id])
-     @movie.comments.build 
+     
      @movie.genres.build 
 
          respond_to do |format|
@@ -77,16 +77,22 @@ class MoviesController < ApplicationController
   end
 
 
-   def high_ratings
-    @high_ratings = Movie.high_rating
-   end 
+  def next 
+   @next = @movie.next 
+   render json: @next
+  end 
 
-  private
+ 
+
+  protected
+
+  def set_movie
+    @movie = Movie.find_by_id(params[:id])
+  end 
 
   def movie_params
 
     params.require(:movie).permit(:title, :description, :year, :user_id, :movie_img, :rating, genre_ids:[], genres_attributes: [:name])
-
 
   end
 

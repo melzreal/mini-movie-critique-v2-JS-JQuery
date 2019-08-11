@@ -32,6 +32,9 @@ class Movie < ApplicationRecord
     #     Movie.all.collect{ |r| r.ratings.collect { |m| r if m.rating == 10}}.flatten.compact
     # end
 
+    def next 
+    	Movie.where("id > ?", id).first
+ 	end 
 
 	
 end

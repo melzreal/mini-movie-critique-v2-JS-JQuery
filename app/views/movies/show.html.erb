@@ -22,27 +22,22 @@
 		<image style ="width: 600px" src="<%=url_for((@movie.movie_img))%>">
 	 <% end %>
 	 <div>
-
-	<% if @movie.comments.exists? %>
 	<div id="comments"> 
+	<% if @movie.comments.exists? %>
 	 <p> Comments: </p>  
-	    <% @movie.comments.collect do |co| %>     
-	<br> 
-		 <%= co.user_id %>
-		 <%= co.text %>      
+	    <% @movie.comments.each do |co| %>  <br> <br>   
+		 <%= co.user.name %> <p>says:</p>
+		 <%= co.text %>    <p>Rates this movie as:</p>
 		 <%= co.rating %>
-	</div>  
-	<br>
 	    <% end %>
-	</div> 
-	<br>
 	<% end %>
-	
-	<div>
+	</div>
+
+	<div id="commentForm">
 	<%= form_for @movie.comments.build do |f| %>
 		<%= f.hidden_field :movie_id, value: @movie.id %>
-		<%= f.label "Add a comment:" %> 
 		<%= f.hidden_field :user_id, value: @commenter.id  %> <br>
+		<%= f.label "Add a comment:" %> 
 		<%= @commenter.username  %> <br>
 		<%= f.text_area :text %> <br>
 		<%= f.label "On 1-10, how would you rate this movie?" %> 
@@ -51,6 +46,7 @@
 		<%= f.submit %>
 	<%  end %>
 	</div>
+
 
 
 <%= link_to "Edit this movie", edit_movie_path(@movie.id) %> 
