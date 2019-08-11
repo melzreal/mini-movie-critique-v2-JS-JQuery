@@ -5,7 +5,7 @@ class Movie < ApplicationRecord
 	belongs_to :user
 	
 	has_many :comments
-	has_many :ratings, through: :comments
+
 
 	has_many :movie_genres
 	has_many :genres, through: :movie_genres
@@ -28,9 +28,9 @@ class Movie < ApplicationRecord
     	Movie.all.genres.collect{ |m| m.name.include?("PG13")}.include?(true) 
     end 
 
-    def self.high_rating
-        Movie.all.collect{ |r| r.ratings.collect { |m| r if m.rating == 10}}.flatten.compact
-    end
+    # def self.high_rating
+    #     Movie.all.collect{ |r| r.ratings.collect { |m| r if m.rating == 10}}.flatten.compact
+    # end
 
 
 	

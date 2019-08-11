@@ -45,6 +45,8 @@ class MoviesController < ApplicationController
   def show
      @movie = Movie.find(params[:id])
      @commenter = User.find(session[:user_id])
+     @movie.comments.build 
+     @movie.genres.build 
 
          respond_to do |format|
             format.html { render :show }

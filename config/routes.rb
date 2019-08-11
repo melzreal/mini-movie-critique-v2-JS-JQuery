@@ -7,8 +7,6 @@ Rails.application.routes.draw do
   resources :sessions
   resources :movies 
 
-  get '/ratings'  => 'movies#high_ratings'
-
 
   resources :users do
     resources :movies, only: [:show, :index]

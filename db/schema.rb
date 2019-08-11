@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2019_06_16_215144) do
     t.integer "user_id"
     t.integer "movie_id"
     t.string "text"
+    t.integer "rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -59,14 +60,6 @@ ActiveRecord::Schema.define(version: 2019_06_16_215144) do
     t.string "description"
     t.integer "year"
     t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "ratings", force: :cascade do |t|
-    t.integer "rating"
-    t.integer "comment_id"
-    t.integer "movie_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
