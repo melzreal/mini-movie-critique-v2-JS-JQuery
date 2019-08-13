@@ -37,6 +37,8 @@ $(document).on('click','.next', function(){
           let singleMovie = new Movie(data);
           let movHTML = singleMovie.showMovie();
           $('.replaceNext').append(movHTML);
+          // movHTML.keys(genres).map((name) => `<p> ${key}<p>`)
+
       $('.next').attr("data-id", data["id"]);
     });
     
@@ -65,9 +67,9 @@ const getMovies = () => {
   	this.title = movie.title 
   	this.description = movie.description
   	this.year = movie.year 
-  	this.genres = movie.genres
+  	this.genres = movie.genres.map(m => ' ' + m.name);
   	this.user_id = movie.user_id 
-  	this.comments = movie.comments 
+  	this.comments = movie.comments.map(m => ' ' + m.text); 
   
   }
 
