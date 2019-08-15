@@ -1,21 +1,46 @@
 $(document).ready(function() {
  
 
+
+
   $(function () {
     $('#new_movie').submit(function(event) {
       event.preventDefault();
-
-      var values = $(this).serialize(); 
-      var posting = $.post('/movies', values);
       
- 
-      posting.done(function(data) {
-        var movie = new Movie(data);
-        var htmlOfMovie =  movie.showMovie();
-        $('body > div.container').html('');
-        $('body > div.container').append(htmlOfMovie); 
+      // var values = $(this).serialize(); 
+      // var posting = $.post('/movies', values);
+
+      var formData = new FormData(this);
+      // //var posting = $.post('/movies', formData);
+      
+      
+    $.ajax({
+                type: 'POST',
+                url: $(`/movies`).attr('action'),
+                data:formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                    $('#imagedisplay').html("<img src=" + data.url + "" + data.name + ">");
+                },
+                error: function(data) {
+                    $('#imagedisplay').html("<h2>this file type is not supported</h2>");
+                }
+                });
+
+
+      // posting.done(function(data) {
+      //   var movie = new Movie(data);
+      //   var htmlOfMovie =  movie.showMovie();
+      //   $('body > div.container').html('');
+      //   $('body > div.container').append(htmlOfMovie); 
+
+
         
-      });
+      }
+
+      );
     
     });
   });

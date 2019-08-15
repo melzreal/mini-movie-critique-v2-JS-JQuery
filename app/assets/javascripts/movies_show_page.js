@@ -2,6 +2,7 @@ $(() => {
 	bindClickHandlers();
 })
 
+
 const bindClickHandlers = () => {
 
 	$('#all_movies').on('click', (e) => {
@@ -59,8 +60,6 @@ const getMovies = () => {
         })
 
 }
-
-
 
 
 class Movie {
