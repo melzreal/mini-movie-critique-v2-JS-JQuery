@@ -37,7 +37,6 @@ $(document).on('click','.next', function(){
           let singleMovie = new Movie(data);
           let movHTML = singleMovie.showMovie();
           $('.replaceNext').append(movHTML);
-          // movHTML.keys(genres).map((name) => `<p> ${key}<p>`)
 
       $('.next').attr("data-id", data["id"]);
     });
@@ -62,16 +61,20 @@ const getMovies = () => {
 }
 
 
-  function Movie(movie){
-  	this.id = movie.id 
-  	this.title = movie.title 
-  	this.description = movie.description
-  	this.year = movie.year 
-  	this.genres = movie.genres.map(m => ' ' + m.name);
-  	this.user_id = movie.user_id 
-  	this.comments = movie.comments.map(m => ' ' + m.text); 
-  
+
+
+class Movie {
+  constructor(movie) {
+    this.id = movie.id 
+    this.title = movie.title 
+    this.description = movie.description
+    this.year = movie.year 
+    this.genres = movie.genres.map(m => ' ' + m.name);
+    this.user_id = movie.user_id 
+    this.comments = movie.comments.map(m => ' ' + m.text);  
   }
+}
+
 
   Movie.prototype.showMovie = function(){
   	let movieHTML = `

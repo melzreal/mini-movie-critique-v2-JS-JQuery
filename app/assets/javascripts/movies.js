@@ -14,10 +14,6 @@ $(document).ready(function() {
         var htmlOfMovie =  movie.showMovie();
         $('body > div.container').html('');
         $('body > div.container').append(htmlOfMovie); 
-        // $("#movieTitle").text(movie["title"]);
-        // $("#movieDescription").text(movie["description"]);
-        // $("#movieYear").text(movie["year"]);
-        // $("#movieImage").img(movie["movie_img"]);
         
       });
     
@@ -37,8 +33,7 @@ $(document).ready(function() {
       ${data.description}  <br>
       ${data.year} <br>
       `);
-      // $(".movieDescription").text(data["description"]);
-      //$(".movieGenres").text(data["movie"]["genres"]);
+    
       $(".next-movie").attr("data-id", data["id"]);
     });
   });
@@ -46,36 +41,5 @@ $(document).ready(function() {
 
 
 
-class Movie {
-  constructor(movie) {
-        this.title = movie.title 
-    this.description = movie.description
-    this.year = movie.year 
-    this.genres = movie.genres.map(m => ' ' + m.name);
-    this.user_id = movie.user_id 
-    this.comments = movie.comments.map(m => ' ' + m.text); 
-  }
-}
-
-
-
-  // function Movie(movie){
-  // 	this.title = movie.title 
-  // 	this.description = movie.description
-  // 	this.year = movie.year 
-  // 	this.genres = movie.genres.map(m => ' ' + m.name);
-  // 	this.user_id = movie.user_id 
-  
-  // }
-
-  Movie.prototype.showMovie = function(){
-  	let movieHTML = `
-  	<h1>${this.title}</h1>
-  	<h2>${this.description}</h2>
-  	<h2>${this.year}</h2>
-  	<h2>${this.genres}</h2>
-  	`
-  	return movieHTML 
-  }
 
 });
