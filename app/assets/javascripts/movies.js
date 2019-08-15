@@ -45,14 +45,28 @@ $(document).ready(function() {
 });
 
 
-  function Movie(movie){
-  	this.title = movie.title 
-  	this.description = movie.description
-  	this.year = movie.year 
-  	this.genres = movie.genres
-  	this.user_id = movie.user_id 
-  
+
+class Movie {
+  constructor(movie) {
+        this.title = movie.title 
+    this.description = movie.description
+    this.year = movie.year 
+    this.genres = movie.genres.map(m => ' ' + m.name);
+    this.user_id = movie.user_id 
+    this.comments = movie.comments.map(m => ' ' + m.text); 
   }
+}
+
+
+
+  // function Movie(movie){
+  // 	this.title = movie.title 
+  // 	this.description = movie.description
+  // 	this.year = movie.year 
+  // 	this.genres = movie.genres.map(m => ' ' + m.name);
+  // 	this.user_id = movie.user_id 
+  
+  // }
 
   Movie.prototype.showMovie = function(){
   	let movieHTML = `
