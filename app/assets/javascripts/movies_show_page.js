@@ -38,6 +38,7 @@ $(document).on('click','.next', function(){
           let singleMovie = new Movie(data);
           let movHTML = singleMovie.showMovie();
           $('.replaceNext').append(movHTML);
+          $('#imagedisplay').html("<img src=" + data.url + "" + data.name + ">")
 
       $('.next').attr("data-id", data["id"]);
     });
@@ -56,6 +57,8 @@ const getMovies = () => {
             let newMovie = new Movie(movie);
             let movHTML = newMovie.showMovie();
             $('body > div.container').append(movHTML);
+
+    
           })
         })
 
@@ -92,6 +95,7 @@ class Movie {
      <div class="replaceNext">
      <h1>${this.title} </a></h1> 
      <h3>${this.description}</h2> 
+
      </div>
      <button class="next" data-id="${this.id}"> Next Movie </button> 
     `
