@@ -33,7 +33,8 @@ class MoviesController < ApplicationController
   
     if @movie.valid?
       @movie.save
-      render json: @movie
+        
+      render json: @movie, status: 201
      
     else
       render :new
@@ -45,7 +46,6 @@ class MoviesController < ApplicationController
   def show
      @movie = Movie.find(params[:id])
      @commenter = User.find(session[:user_id])
-     
      @movie.genres.build 
 
          respond_to do |format|

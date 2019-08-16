@@ -5,47 +5,49 @@ $(document).ready(function() {
     $('#new_movie').submit(function(event) {
       event.preventDefault();
       
-      // var values = $(this).serialize(); 
-      // var posting = $.post('/movies', values);
+      var values = $(this).serialize(); 
+      var posting = $.post('/movies', values);
     
-      var formData = new FormData(this);
+    //   var formData = new FormData(this);
       
-    $.ajax({
-                type: 'POST',
-                url: $(`/movies`).attr('action'),
-                data:formData,
-                cache:false,
-                contentType: false,
+    // $.ajax({
+    //             type: 'POST',
+    //             url: $(`/movies`).attr('action'),
+    //             data:formData,
+    //             cache:false,
+    //             contentType: false,
                 
-                success: function(data) {
-                  var movie = new Movie(data);
+    //             success: function(data) {
+    //               var movie = new Movie(data);
+    //               var htmlOfMovie =  movie.showMovie();
+    //               $('body > div.container').html('');
+    //               $('body > div.container').append(htmlOfMovie);           
+    //               $('#imagedisplay').html("<img src=" + data.url + "" + data.name + ">");
+    //             },
+    //             error: function(data) {
+    //                 $('#imagedisplay').html("<h2>this file type is not supported</h2>");
+    //             }
+    //             });
+
+
+      posting.done(function(data) {
+      
+        var movie = new Movie(data);
                   var htmlOfMovie =  movie.showMovie();
                   $('body > div.container').html('');
-                  $('body > div.container').append(htmlOfMovie);           
-                  $('#imagedisplay').html("<img src=" + data.url + "" + data.name + ">");
-                },
-                error: function(data) {
-                    $('#imagedisplay').html("<h2>this file type is not supported</h2>");
-                }
-                });
-
-
-      // posting.done(function(data) {
-      
-        // var movie = new Movie(data);
-        //           var htmlOfMovie =  movie.showMovie();
-        //           $('body > div.container').html('');
-        //           $('body > div.container').append(htmlOfMovie); 
+                  $('body > div.container').append(htmlOfMovie); 
         
-      //
+       });
+     
        });
     
   });
 
  $(function () {
-  event.preventDefault()
+  
   $(".next-movie").on("click", function() {
-  	
+   
+    event.preventDefault();
    
     var nextID = parseInt($(".next-movie").attr("data-id")) + 1;
   

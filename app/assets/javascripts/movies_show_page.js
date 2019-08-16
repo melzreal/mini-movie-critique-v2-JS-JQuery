@@ -1,16 +1,16 @@
 $(() => {
-	bindClickHandlers();
+  bindClickHandlers();
 })
 
 
 const bindClickHandlers = () => {
 
-	$('#all_movies').on('click', (e) => {
-		e.preventDefault();
-		history.pushState(null, null, "movies");
+  $('#all_movies').on('click', (e) => {
+    e.preventDefault();
+    history.pushState(null, null, "movies");
     getMovies();
 
-	});
+  });
 
   $(document).on('click','a.show_movie', function(e){
     e.preventDefault();
@@ -79,14 +79,14 @@ class Movie {
 
 
   Movie.prototype.showMovie = function(){
-  	let movieHTML = `
-  	 <h1><a href="/movies/${this.id}" data-id="${this.id}" class="show_movie"> ${this.title} </a></h1> 
-  	 <h3>${this.description}</h2> 
-  	 <h3>${this.year}</h2> 
-  	 <h3>${this.genres}</h2> <br> 
-  	 <h3>${this.comments}</h2> <br> 
-  	`
-  	return movieHTML 
+    let movieHTML = `
+     <h1><a href="/movies/${this.id}" data-id="${this.id}" class="show_movie"> ${this.title} </a></h1> 
+     <h3>${this.description}</h2> 
+     <h3>${this.year}</h2> 
+     <h3>${this.genres}</h2> <br> 
+     <h3>${this.comments}</h2> <br> 
+    `
+    return movieHTML 
   }
 
 
