@@ -32,6 +32,7 @@ class Movie < ApplicationRecord
     # end
 
     def next 
+  
         mooouvie = Movie.where("id > ?", id).first
 
         mooouvie ? mooouvie : Movie.first

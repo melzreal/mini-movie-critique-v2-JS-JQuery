@@ -44,15 +44,20 @@ class MoviesController < ApplicationController
 
 
   def show
-     @movie = Movie.find(params[:id])
+    if @movie 
+    
      @commenter = User.find(session[:user_id])
      @movie.genres.build 
 
          respond_to do |format|
             format.html { render :show }
             format.json { render json: @movie }
-          end       
-  
+          end  
+        else 
+          @default = Movie.find_by_id(1)
+          render json: @default
+        end 
+         
   end
 
   def edit
@@ -78,8 +83,15 @@ class MoviesController < ApplicationController
 
 
   def next 
-   @next = @movie.next 
-   render json: @next
+    
+    
+    if @movie
+      @next = @movie.next
+      render json: @next
+    else
+      @default = Movie.find_by_id(3)
+      render json: @default
+    end 
   end 
 
  
