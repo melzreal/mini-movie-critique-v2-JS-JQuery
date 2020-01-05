@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
  
+  # adding heroku resources
+
    get '/auth/facebook/callback' => 'sessions#create_facebook'
 
   resources :comments
