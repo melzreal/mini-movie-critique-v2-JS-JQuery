@@ -9,6 +9,7 @@ const bindClickHandlers = () => {
     e.preventDefault();
     history.pushState(null, null, "movies");
     getMovies();
+    sortMovies();
 
   });
 
@@ -47,15 +48,57 @@ $(document).on('click','.next', function(){
 
 }
 
+const sortMovies = () => {
+
+  $('.sorting').on('click', function(){
+
+     alert('heey');
+
+    fetch('/movies.json')
+     .then(res => res.json())
+     .then(movies => {
+     
+      $('body > div.container').html('')
+       // movies.forEach(movie =>
+
+       movies.sort(function(a, b) {
+        var movieA = a.title.toUpperCase() // ignore upper and lowercase
+        var movieB = b.title.toUpperCase() // ignore upper and lowercase
+          if (movieA < movieB) {
+            return -1;
+          }
+          if (movieA > movieB) {
+            return 1;
+          }
+
+          return 0;
+        }) //closes movies.sort
+
+        movies.forEach(movie => {
+                  let newMovie = new Movie(movie);
+                  let movHTML = newMovie.showMovie();
+                  $('body > div.container').append(movHTML);
+
+          
+                })
+                
+          }) //closes movies
+        }); 
+
+
+}
+
 const getMovies = () => {
 
     fetch('/movies.json')
       .then(res => res.json())
       .then(movies => {
+        console.log(movies);
           $('body > div.container').html('')
           movies.forEach(movie => {
             let newMovie = new Movie(movie);
             let movHTML = newMovie.showMovie();
+            let sortButton =  `<button class="sorting"> Sort Movies </button>`
             $('body > div.container').append(movHTML);
 
     
@@ -84,7 +127,7 @@ class Movie {
      <h3>${this.description}</h2> 
      <h3>${this.year}</h2> 
      <h3>${this.genres}</h2> <br> 
-     <h3>${this.comments}</h2> <br> 
+     <h3>${this.comments}</h2> <br>
     `
     return movieHTML 
   }
